@@ -11,9 +11,9 @@
   class Extension {
     getInfo() {
       return {
-        "id": "noahgpt",
-        "name": "noahgpt",
-        "color1": "#383838",
+        "id": "python",
+        "name": "python",
+        "color1": "#25519738",
         "blocks": blocks,
         "menus": menus,
       }
@@ -21,21 +21,25 @@
   }
   
 blocks.push({
-  opcode: "noahgpt_Block_prompt-noahgpt",
+  opcode: "run-python",
   blockType: Scratch.BlockType.REPORTER,
-  text: "prompt [input] to noahgpt",
+  text: "run [input] in python",
   arguments: {
       "input": {
       type: Scratch.ArgumentType.STRING,
-      defaultValue: `how are you?`
+      defaultValue: ``
     },
 
   },
   disableMonitor: false
 });
-Extension.prototype["noahgpt_Block_prompt-noahgpt"] = function(args, util) {
+Extension.prototype["run-python"] = function(args, util) {
   const localVars = {};
-    return ;
+  input = args.input
+  import {PythonShell} from 'python-shell'
+    return PythonShell.runString(
+      input
+    ) ;
 };
 
 
